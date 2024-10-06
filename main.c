@@ -24,20 +24,39 @@ void afficherGrille() {
     printf("\n");
 }
 
-int verifierVictoire() {
+int verifierVictoireJoueur() {
     for (int i = 0; i < 3; i++) {
-        if (grille[i][0] == grille[i][1] && grille[i][1] == grille[i][2])
+        if (grille[i][0] == grille[i][1] && grille[i][1] == grille[i][2] == 'X')
             return 1;
     }
 
     for (int i = 0; i < 3; i++) {
-        if (grille[0][i] == grille[1][i] && grille[1][i] == grille[2][i])
+        if (grille[0][i] == grille[1][i] && grille[1][i] == grille[2][i] == 'X')
             return 1;
     }
 
-    if (grille[0][0] == grille[1][1] && grille[1][1] == grille[2][2])
+    if (grille[0][0] == grille[1][1] && grille[1][1] == grille[2][2] =='X')
         return 1;
-    if (grille[0][2] == grille[1][1] && grille[1][1] == grille[2][0])
+    if (grille[0][2] == grille[1][1] && grille[1][1] == grille[2][0] == 'X')
+        return 1;
+
+    return 0;
+}
+
+int verifierVictoireOrdi() {
+    for (int i = 0; i < 3; i++) {
+        if (grille[i][0] == grille[i][1] && grille[i][1] == grille[i][2] == 'O')
+            return 1;
+    }
+
+    for (int i = 0; i < 3; i++) {
+        if (grille[0][i] == grille[1][i] && grille[1][i] == grille[2][i] == 'O')
+            return 1;
+    }
+
+    if (grille[0][0] == grille[1][1] && grille[1][1] == grille[2][2] =='O')
+        return 1;
+    if (grille[0][2] == grille[1][1] && grille[1][1] == grille[2][0] == 'O')
         return 1;
 
     return 0;
@@ -97,9 +116,15 @@ int main() {
             jouerOrdinateur();
         }
 
-        if (verifierVictoire()) {
+        if (verifierVictoireJoueur()) {
             afficherGrille();
             printf("Félicitations ! Le joueur %c a gagné !\n", joueur);
+            break;
+        }
+
+        if (verifierVictoireOrdi()) {
+            afficherGrille();
+            printf("L'ordinateur à gagné !\n", joueur);
             break;
         }
 
