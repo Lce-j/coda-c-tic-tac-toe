@@ -124,7 +124,7 @@ int main() {
 
         if (verifierVictoireOrdi()) {
             afficherGrille();
-            printf("L'ordinateur à gagné !\n", joueur);
+            printf("L'ordinateur à gagné !\n");
             break;
         }
 
